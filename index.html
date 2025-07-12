@@ -3,65 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="floating-particles"></div>
+    <div class="favorites" id="favorites">
+        <h4>Favorites</h4>
+        <div id="favoritesList"></div>
+    </div>
     <main>
-        <nav class="bg-gray-800 p-4 rounded-md mt-4 shadow-md">
-            <ul class="flex space-x-6 justify-center">
+        <nav>
+            <ul>
                 <li>
-                    <button id="darkModeToggle" class="p-2 bg-gray-600 rounded-full text-white hover:bg-gray-500 focus:outline-none">
-                        <i class="fa-solid fa-moon"></i>
-                    </button>
+                    <h2>Weather App</h2>
+                </li>
+                <li>
+                    <div class="nav-buttons">
+                        <button id="favoritesToggle" title="Toggle Favorites">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                        <button id="refreshBtn" title="Refresh Data">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                        <button id="darkModeToggle" title="Toggle Dark Mode">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </div>
                 </li>
             </ul>
         </nav>
-        
-        
-        <form>
-            <input type="text" id="name" autocomplete="off">
-            <button>
+        <form id="weatherForm" autocomplete="off">
+            <input type="text" id="name" placeholder="Enter city name..." autocomplete="off">
+            <div id="suggestionBox" class="suggestion-box"></div>
+            <div class="units-toggle">
+                <button type="button" class="unit-btn active" data-unit="metric">°C</button>
+                <button type="button" class="unit-btn" data-unit="imperial">°F</button>
+            </div>
+            <button type="submit" class="search-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
-        <section class="result">
+        <section class="result" id="resultSection">
             <figure class="name">
-                <figcaption>Lo1ndon</figcaption> 
-                <img src="https://flagsapi.com/GB/shiny/32.png">
+                <figcaption id="cityName">London</figcaption>
+                <img id="countryFlag" src="https://flagsapi.com/GB/shiny/32.png" alt="Country flag">
+                <button id="addToFavorites">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
             </figure>
-
             <figure class="temperature">
-                <img src="https://openweathermap.org/img/wn/10d@4x.png">
+                <img id="weatherIcon" src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather icon">
                 <figcaption>
-                    <span>31</span>
-                    <sup>o</sup>
-                </figcaption> 
+                    <span id="temp">31</span>
+                    <sup>°</sup>
+                </figcaption>
             </figure>
-            <p class="description">overcast clouds</p>
+            <p class="description" id="weatherDesc">overcast clouds</p>
             <div class="main">
                 <ul>
                     <li>
-                        <span>clouds</span>
+                        <span>Clouds</span>
                         <i class="fa-solid fa-cloud"></i>
                         <span id="clouds">98</span>%
                     </li>
                     <li>
-                        <span>humidity</span>
+                        <span>Humidity</span>
                         <i class="fa-solid fa-droplet"></i>
                         <span id="humidity">98</span>%
                     </li>
                     <li>
-                        <span>pressure</span>
+                        <span>Pressure</span>
                         <i class="fa-solid fa-gauge"></i>
                         <span id="pressure">1011</span>hPa
+                    </li>
+                    <li>
+                        <span>Wind Speed</span>
+                        <i class="fa-solid fa-wind"></i>
+                        <span id="windSpeed">5.2</span>m/s
+                    </li>
+                    <li>
+                        <span>Visibility</span>
+                        <i class="fa-solid fa-eye"></i>
+                        <span id="visibility">10</span>km
+                    </li>
+                    <li>
+                        <span>UV Index</span>
+                        <i class="fa-solid fa-sun"></i>
+                        <span id="uvIndex">-</span>
                     </li>
                 </ul>
             </div>
         </section>
+        <section class="forecast">
+            <h3>5-Day Forecast</h3>
+            <div class="forecast-days" id="forecastDays">
+                <!-- Forecast cards will be injected here -->
+            </div>
+        </section>
     </main>
-
     <script src="app.js"></script>
 </body>
 </html>
